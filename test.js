@@ -12,6 +12,17 @@ const multipath = `<svg viewBox='0 0 32 32'>
   <path d='M0 32 H32 V28 H0z' />
 </svg>`
 
+const deep = `<svg viewBox='0 0 32 32'>
+  <g>
+    <path d='M0 0 H32 V4 H0z' />
+    <g>
+      <g>
+        <path d='M0 32 H32 V28 H0z' />
+      </g>
+    </g>
+  </g>
+</svg>`
+
 test('exports functions', t => {
   t.is(typeof Pixo.parse, 'function')
   t.is(typeof Pixo.stringify, 'function')
@@ -26,6 +37,11 @@ test('parses svg', t => {
 
 test('combines multiple paths', t => {
   const a = Pixo.parse(multipath)
+  t.is(a.path, 'M0 0 H32 V4 H0z M0 32 H32 V28 H0z')
+})
+
+test('parses deeply nested paths', t => {
+  const a = Pixo.parse(deep)
   t.is(a.path, 'M0 0 H32 V4 H0z M0 32 H32 V28 H0z')
 })
 

@@ -1,6 +1,6 @@
 {
   "name": "pixo",
-  "version": "1.0.0-1",
+  "version": "1.0.0-2",
   "description": "SVG icon library management and optimization",
   "main": "index.js",
   "bin": {
