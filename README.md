@@ -140,7 +140,4 @@ Options can be passed as flags to the CLI or added to a `pixo` field in your `pa
 [sc]: https://github.com/styled-components/styled-components
 [sys]: https://github.com/jxnblk/styled-system
 
-- [x] template option
-- [x] pkg options
-- [x] index.js barrel
-- [x] Icon wrapper component
+[MIT License](LICENSE.md)
