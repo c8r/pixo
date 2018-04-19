@@ -62,7 +62,7 @@ To use a custom template, pass a path to your template to the `--template` flag.
 pixo icons --template custom-template.js
 ```
 
-A template should be a node module that exports a function that returns a string for the component source code.
+A template should be a function that returns a string for the component source code, written as a Node.js module.
 
 ```js
 // default template
