@@ -7,12 +7,14 @@ CLI for converting SVG icons to React components
 npm i pixo
 ```
 
+Pass a directory or SVG file path as the first argument.
+
 ```sh
 $ pixo src --out-dir dist
 ```
 
-Each icon will be automatically optimized and renamed to a pascal case filename for the component.
-Icon component can then be imported into a React application.
+Each SVG icon will be automatically optimized and renamed to a pascal case filename for the component.
+Icon components can then be imported into a React application.
 
 ```jsx
 import React from 'react'
@@ -29,7 +31,6 @@ The default component template includes props for:
 
 - `size` (number) pixel width and height (default `24`)
 - `color` (string) color value passed to the SVG `fill` attribute (default `'currentcolor'`)
-
 
 ## SVG Requirements
 
@@ -58,7 +59,7 @@ Pixo uses a default template for rendering, but includes some built-in options.
 To use a custom template, pass a path to your template to the `--template` flag.
 
 ```sh
-pixo icons -d dist --template custom-template.js
+pixo icons --template custom-template.js
 ```
 
 A template should be a node module that exports a function that returns a string for the component source code.
@@ -71,7 +72,7 @@ module.exports = ({
   pathData
 }) => `import React from 'react'
 
-const ${name} = ({
+const ${name}Icon = ({
   size,
   color,
   ...props
@@ -87,15 +88,17 @@ const ${name} = ({
   </svg>
 )
 
-${name}.displayName = '${name}'
+${name}Icon.displayName = '${name}Icon'
 
-${name}.defaultProps = {
+${name}Icon.defaultProps = {
   size: 24,
   color: 'currentcolor'
 }
 
 export default ${name}`
 ```
+
+**Template function arguments**
 
 - `name` camel cased name that can be used for the component name
 - `viewBox` the original viewBox value from the SVG
@@ -105,7 +108,7 @@ export default ${name}`
 
 Options can be passed as flags to the CLI or added to a `pixo` field in your `package.json`
 
-- `outDir` (string) output directory
+- `outDir` (string) output directory (default dist)
 - `template` (string) name of built-in template or path to custom template
 - `index` (boolean) create an `index.js` barrel module
 - `iconComponent` (boolean) create an `Icon.js` wrapper component
