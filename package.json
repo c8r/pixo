@@ -1,24 +1,36 @@
 {
   "name": "pixo",
-  "version": "1.0.0-2",
-  "description": "SVG icon library management and optimization",
+  "version": "1.0.0-3",
+  "description": "CLI for converting SVG icons to React components",
   "main": "index.js",
   "bin": {
-    "pixo": "./bin/pixo.js"
+    "pixo": "./bin/cli.js"
   },
   "scripts": {
-    "test": "ava"
+    "build": "./bin/cli.js examples",
+    "test": "nyc ava"
   },
-  "keywords": [],
+  "keywords": [
+    "svg",
+    "icon",
+    "icons",
+    "react",
+    "component"
+  ],
   "author": "Brent Jackson",
   "license": "MIT",
   "dependencies": {
-    "meow": "^3.7.0",
-    "prompt": "^1.0.0",
+    "meow": "^4.0.0",
+    "read-pkg-up": "^3.0.0",
     "svgi": "^1.1.0"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
-    "is-svg": "^2.1.0"
+    "ava": "^0.25.0",
+    "is-svg": "^3.0.0",
+    "nyc": "^11.7.1"
+  },
+  "pixo": {
+    "template": "styledSystem",
+    "iconComponent": true
   }
 }
