@@ -38,6 +38,7 @@ Each SVG icon **must** conform to the following:
 
 - Use a square `viewBox` attribute, preferably `0 0 24 24`
 - Only include `<path>` elements
+- Only use a single color (e.g. black)
 
 ### Converting SVG shapes to `<path>` elements
 
@@ -134,6 +135,14 @@ Options can be passed as flags to the CLI or added to a `pixo` field in your `pa
   }
 }
 ```
+
+## Related
+
+- [Microicon](https://icon.now.sh)
+- [Building SVG Icons with React](http://jxnblk.com/react-icons/)
+- [Reline](https://github.com/jxnblk/reline)
+- [React Icons](https://github.com/gorangajic/react-icons)
+- [Making SVG Icon Libraries for React Apps](http://nicolasgallagher.com/making-svg-icon-libraries-for-react-apps/)
 
 ---
 
