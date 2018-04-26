@@ -1,7 +1,7 @@
 
 # pixo
 
-CLI for converting SVG icons to React components
+Convert SVG icons to React components
 
 ```sh
 npm i pixo
@@ -108,6 +108,8 @@ export default ${name}`
 ## Options
 
 Options can be passed as flags to the CLI or added to a `pixo` field in your `package.json`
+
+Run `pixo --help` to see the list of options.
 
 - `outDir` (string) output directory (default dist)
 - `template` (string) name of built-in template or path to custom template
