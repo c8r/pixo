@@ -1,7 +1,7 @@
 
 # pixo
 
-Convert SVG icons to React components
+Convert SVG icons into React components
 
 ```sh
 npm i pixo
@@ -40,7 +40,7 @@ Each SVG icon **must** conform to the following:
 - Only include `<path>` elements
 - Only use a single color (e.g. black)
 
-### Converting SVG shapes to `<path>` elements
+### Converting SVG shapes into `<path>` elements
 
 Most graphics applications can convert shapes into SVG paths.
 
