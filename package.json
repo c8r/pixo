@@ -22,7 +22,8 @@
   "dependencies": {
     "meow": "^4.0.0",
     "read-pkg-up": "^3.0.0",
-    "svgi": "^1.1.0"
+    "svgi": "^1.1.0",
+    "update-notifier": "^2.5.0"
   },
   "devDependencies": {
     "ava": "^0.25.0",
