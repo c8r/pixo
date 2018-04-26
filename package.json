@@ -1,7 +1,7 @@
 {
   "name": "pixo",
   "version": "1.0.1",
-  "description": "Convert SVG icons to React components",
+  "description": "Convert SVG icons into React components",
   "main": "index.js",
   "bin": {
     "pixo": "./bin/cli.js"
