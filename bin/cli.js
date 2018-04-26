@@ -104,3 +104,7 @@ components.forEach(({ name, content }) => {
   const filename = path.join(opts.outDir, name + '.js')
   fs.writeFileSync(filename, content)
 })
+
+require('update-notifier')({
+  pkg: require('../package.json')
+}).notify()
