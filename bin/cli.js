@@ -2,9 +2,10 @@
 const fs = require('fs')
 const path = require('path')
 const meow = require('meow')
-const readPKG = require('read-pkg-up').sync
 const pixo = require('../index')
 const templates = require('../lib/templates')
+
+const config = require('pkg-conf').sync('pixo')
 
 const cli = meow(`
   Usage:
@@ -24,6 +25,7 @@ const cli = meow(`
     -c --icon-component   Include wrapper Icon.js component
 
 `, {
+  booleanDefault: undefined,
   flags: {
     outDir: {
       type: 'string',
@@ -45,7 +47,6 @@ const cli = meow(`
 })
 
 const [ fileOrDir ] = cli.input
-const { pkg } = readPKG()
 
 const flags = {}
 for (let key in cli.flags) {
@@ -55,7 +56,7 @@ for (let key in cli.flags) {
 
 const opts = Object.assign({
   outDir: 'dist'
-}, pkg.pixo, flags)
+}, config, flags)
 
 const absolute = file => !file || path.isAbsolute(file) ? file : path.join(process.cwd(), file)
 const stats = fs.statSync(absolute(fileOrDir))
