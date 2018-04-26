@@ -34,5 +34,13 @@
   "pixo": {
     "template": "styledSystem",
     "iconComponent": true
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c8r/pixo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/c8r/pixo/issues"
+  },
+  "homepage": "https://github.com/c8r/pixo#readme"
 }
