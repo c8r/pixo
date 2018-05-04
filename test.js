@@ -70,6 +70,14 @@ test('returns an index.js module', t => {
   t.snapshot(components)
 })
 
+test('allows to customise index template', t => {
+  const components = pixo(svgs, {
+    index: ({ components }) =>
+      `[${components.map(({ name }) => `'${name}'`).join(',')}]`
+  })
+  t.snapshot(components)
+})
+
 test('returns an Icon.js component module', t => {
   const components = pixo(svgs, {
     iconComponent: true
