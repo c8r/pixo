@@ -177,3 +177,28 @@ test('warns when an unsupported element is used', t => {
   t.is(console.log.calledOnce, true)
   console.log.restore()
 })
+
+test('ignores elements in defs and clipPath elements', t => {
+  const svg = pixo.parse({
+    name: 'Defs',
+    content: `<svg viewBox='0 0 32 32'>
+      <defs>
+        <path d='M 0 0 L 32 32' />
+      </defs>
+      <clipPath>
+        <path d='M 0 0 L 32 32' />
+      </clipPath>
+    </svg>`
+  })
+  t.is(svg.pathData, '')
+})
+
+test('ignores paths with fill="none"', t => {
+  const svg = pixo.parse({
+    name: 'Fill',
+    content: `<svg>
+      <path fill="none" d="M0 0 L32 32" />
+    </svg>`
+  })
+  t.is(svg.pathData, '')
+})
