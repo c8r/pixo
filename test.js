@@ -1,5 +1,6 @@
 const test = require('ava')
 const isSVG = require('is-svg')
+const sinon = require('sinon')
 const pixo = require('./index')
 
 const shape = 'M16,4l14,26H2L16,4z'
@@ -161,4 +162,18 @@ test('rectToPath converts rect elements to path', t => {
     }
   })
   t.is(path.properties.d, 'M 2 3 H 6 V 11 H 2 z')
+})
+
+test('warns when an unsupported element is used', t => {
+  sinon.spy(console, 'log')
+  pixo([
+    {
+      name: 'Unsupported',
+      content: `<svg viewBox='0 0 32 32'>
+        <ellipse cx='16' cy='16' rx='2' ry='4' />
+      </svg>`
+    }
+  ])
+  t.is(console.log.calledOnce, true)
+  console.log.restore()
 })
