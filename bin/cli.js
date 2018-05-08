@@ -2,6 +2,8 @@
 const fs = require('fs')
 const path = require('path')
 const meow = require('meow')
+const camelCase = require('lodash.camelcase')
+const upperFirst = require('lodash.upperfirst')
 const pixo = require('../index')
 const templates = require('../lib/templates')
 
@@ -71,12 +73,9 @@ if (opts.template) {
     : require(absolute(opts.template))
 }
 
-const pascal = str =>
-  str.match(/[a-z]+/gi)
-    .map(word =>
-      word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
-    )
-    .join('')
+const pascal = str => upperFirst(
+  camelCase(str)
+)
 
 const readFile = file => {
   const name = pascal(
