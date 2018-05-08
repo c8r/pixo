@@ -37,8 +37,17 @@ The default component template includes props for:
 Each SVG icon **must** conform to the following:
 
 - Use a square `viewBox` attribute, preferably `0 0 24 24`
-- Only include `<path>` elements
 - Only use a single color (e.g. black)
+- For best results, only use `<path>` elements
+
+Pixo includes experimental support for `<circle>`, `<polygon>`, and `<rect>` elements.
+
+The following elements will be ignored:
+- Elements within a `<defs>` or `<clipPath>`
+- Elements with the `fill="none"` attribute
+- `<ellipse>` elements
+- `<line>` elements
+- `<polyline>` elements
 
 ### Converting SVG shapes into `<path>` elements
 
@@ -148,6 +157,9 @@ Run `pixo --help` to see the list of options.
 - [Reline](https://github.com/jxnblk/reline)
 - [React Icons](https://github.com/gorangajic/react-icons)
 - [Making SVG Icon Libraries for React Apps](http://nicolasgallagher.com/making-svg-icon-libraries-for-react-apps/)
+- [babel-plugin-inline-react-svg](https://github.com/kesne/babel-plugin-inline-react-svg)
+- [svg-react-loader](https://github.com/jhamlet/svg-react-loader)
+- [react-svg-loader](https://github.com/boopathi/react-svg-loader)
 
 ---
 
