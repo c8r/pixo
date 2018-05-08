@@ -115,6 +115,7 @@ Run `pixo --help` to see the list of options.
 - `template` (string) name of built-in template or path to custom template
 - `index` (boolean) create an `index.js` barrel module
 - `iconComponent` (boolean) create an `Icon.js` wrapper component
+- `recursive` (boolean) recursively read all SVGs in subdirectories
 
 **CLI flags**
 
@@ -123,6 +124,7 @@ Run `pixo --help` to see the list of options.
 -t --template         Name of built-in template or path to custom template
 -i --index            Include index.js barrel module
 -c --icon-component   Include wrapper Icon.js component
+-r --recursive        Recursively read all SVGs in subdirectories
 ```
 
 **Example `package.json`**
@@ -133,7 +135,8 @@ Run `pixo --help` to see the list of options.
     "outDir": "dist",
     "template": "./custom-template.js",
     "index": true,
-    "iconComponent": true
+    "iconComponent": true,
+    "recursive": true
   }
 }
 ```
