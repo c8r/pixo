@@ -32,10 +32,45 @@ const deep = {
 </svg>`
 }
 
+const polygon = {
+  name: 'Polygon',
+  content: `<svg viewBox='0 0 32 32'>
+    <polygon
+      points='16,0 0,30 32 30'
+    />
+  </svg>`
+}
+
+const circle = {
+  name: 'Circle',
+  content: `<svg viewBox='0 0 32 32'>
+    <circle
+      cx='16'
+      cy='16'
+      r='4'
+    />
+  </svg>`
+}
+
+const rect = {
+  name: 'Rect',
+  content: `<svg viewBox='0 0 32 32'>
+    <rect
+      x='2'
+      y='9'
+      width='28'
+      height='14'
+    />
+  </svg>`
+}
+
 const svgs = [
   basic,
   multipath,
-  deep
+  deep,
+  polygon,
+  circle,
+  rect
 ]
 
 test('returns an array', t => {
@@ -78,3 +113,17 @@ test('returns an Icon.js component module', t => {
   t.snapshot(components)
 })
 
+test('handles polygon elements', t => {
+  const components = pixo([ polygon ])
+  t.snapshot(components)
+})
+
+test('handles circle elements', t => {
+  const components = pixo([ circle ])
+  t.snapshot(components)
+})
+
+test('handles rect elements', t => {
+  const components = pixo([ rect ])
+  t.snapshot(components)
+})
