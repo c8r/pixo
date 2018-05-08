@@ -127,3 +127,38 @@ test('handles rect elements', t => {
   const components = pixo([ rect ])
   t.snapshot(components)
 })
+
+test('polygonToPath converts polygon elements to path', t => {
+  const path = pixo.polygonToPath({
+    type: 'polygon',
+    properties: {
+      points: '2,2 4,4 2 6'
+    }
+  })
+  t.is(path.properties.d, 'M 2 2 L 4 4 L 2 6 z')
+})
+
+test('circleToPath converts circle elements to path', t => {
+  const path = pixo.circleToPath({
+    type: 'circle',
+    properties: {
+      cx: '16',
+      cy: '12',
+      r: '4',
+    }
+  }, 0)
+  t.is(path.properties.d, 'M 16 8 A 4 4 0 0 1 16 16 A 4 4 0 0 1 16 8')
+})
+
+test('rectToPath converts rect elements to path', t => {
+  const path = pixo.rectToPath({
+    type: 'rect',
+    properties: {
+      x: '2',
+      y: '3',
+      width: '4',
+      height: '8'
+    }
+  })
+  t.is(path.properties.d, 'M 2 3 H 6 V 11 H 2 z')
+})
