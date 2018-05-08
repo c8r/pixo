@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const path = require('path')
+const { promisify } = require('util')
 const meow = require('meow')
+const recursiveReaddir = require('recursive-readdir')
 const camelCase = require('lodash.camelcase')
 const upperFirst = require('lodash.upperfirst')
 const pixo = require('../index')
@@ -44,6 +46,10 @@ const cli = meow(`
     iconComponent: {
       type: 'boolean',
       alias: 'c'
+    },
+    recursive: {
+      type: 'boolean',
+      alias: 'r'
     }
   }
 })
@@ -85,24 +91,34 @@ const readFile = file => {
   return { name, content }
 }
 
-const files = (
-  opts.filename
-    ? [ opts.filename ]
-    : fs.readdirSync(opts.dirname)
-      .filter(file => /\.svg$/.test(file))
-      .map(file => path.join(opts.dirname, file))
-  )
-  .map(readFile)
+const ignore = (file, stats) => !stats.isDirectory() && !/\.svg$/.test(file)
 
-const components = pixo(files, opts)
+const convert = async (opts) => {
+  const readdir = opts.recursive
+    ? async dirname => recursiveReaddir(dirname, [ ignore ])
+    : async dirname => promisify(fs.readdir)(dirname)
+      .then(files => files.map(file => path.join(dirname, file)))
 
-if (!fs.existsSync(opts.outDir)) {
-  fs.mkdirSync(opts.outDir)
+  const files = opts.filename
+    ? [ path.join(opts.dirname, opts.filename) ]
+    : await readdir(opts.dirname)
+
+  const icons = files
+    .filter(file => /\.svg$/.test(file))
+    .map(readFile)
+
+  const components = pixo(icons, opts)
+
+  if (!fs.existsSync(opts.outDir)) {
+    fs.mkdirSync(opts.outDir)
+  }
+  components.forEach(({ name, content }) => {
+    const filename = path.join(opts.outDir, name + '.js')
+    fs.writeFileSync(filename, content)
+  })
 }
-components.forEach(({ name, content }) => {
-  const filename = path.join(opts.outDir, name + '.js')
-  fs.writeFileSync(filename, content)
-})
+
+convert(opts)
 
 require('update-notifier')({
   pkg: require('../package.json')
