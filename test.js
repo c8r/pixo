@@ -136,8 +136,8 @@ test('handles rect elements', (t) => {
 })
 
 test('handles translations', (t) => {
-  const paths = pixo([translatedRect])
-  t.is(paths[0], 'M 42 29 H 70 V 43 H 42 z')
+  const components = pixo([translatedRect])
+  t.snapshot(components)
 })
 
 test('polygonToPath converts polygon elements to path', (t) => {
