@@ -79,11 +79,11 @@ const translatedRect = {
 }
 
 const svgs = [
-  basic, 
-  multipath, 
-  deep, 
-  polygon, 
-  circle, 
+  basic,
+  multipath,
+  deep,
+  polygon,
+  circle,
   rect
 ]
 
@@ -99,7 +99,7 @@ test('snapshot', t => {
 
 test('snapshot with named template', t => {
   const components = pixo(svgs, {
-    template: 'styledSystem',
+    template: 'styledSystem'
   })
   t.snapshot(components)
 })
@@ -158,17 +158,14 @@ test('polygonToPath converts polygon elements to path', t => {
 })
 
 test('circleToPath converts circle elements to path', t => {
-  const path = pixo.circleToPath(
-    {
-      type: 'circle',
-      properties: {
-        cx: '16',
-        cy: '12',
-        r: '4'
-      }
-    },
-    0
-  )
+  const path = pixo.circleToPath({
+    type: 'circle',
+    properties: {
+      cx: '16',
+      cy: '12',
+      r: '4'
+    }
+  }, 0)
   t.is(path.properties.d, 'M 16 8 A 4 4 0 0 1 16 16 A 4 4 0 0 1 16 8')
 })
 
@@ -214,12 +211,12 @@ test('ignores elements in defs and clipPath elements', t => {
   t.is(svg.pathData, '')
 })
 
-test('ignores paths with fill="none"', (t) => {
+test('ignores paths with fill="none"', t => {
   const svg = pixo.parse({
     name: 'Fill',
     content: `<svg>
       <path fill="none" d="M0 0 L32 32" />
-    </svg>`,
+    </svg>`
   })
   t.is(svg.pathData, '')
 })
