@@ -163,7 +163,7 @@ test('circleToPath converts circle elements to path', t => {
     properties: {
       cx: '16',
       cy: '12',
-      r: '4'
+      r: '4',
     }
   }, 0)
   t.is(path.properties.d, 'M 16 8 A 4 4 0 0 1 16 16 A 4 4 0 0 1 16 8')
