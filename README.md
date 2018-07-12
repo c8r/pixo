@@ -1,4 +1,3 @@
-
 # pixo
 
 Convert SVG icons into React components
@@ -20,7 +19,7 @@ Icon components can then be imported into a React application.
 import React from 'react'
 import CheckIcon from './CheckIcon'
 
-const App = props => (
+const App = (props) => (
   <div>
     <CheckIcon />
   </div>
@@ -39,11 +38,12 @@ Each SVG icon **must** conform to the following:
 - Use a square `viewBox` attribute, preferably `0 0 24 24`
 - Only use a single color (e.g. black)
 - For best results, only use `<path>` elements
-- Do *not* use transforms
+- Initial support for the `translate` transformation is included. Others are not supported yet.
 
 Pixo includes experimental support for `<circle>`, `<polygon>`, and `<rect>` elements.
 
 The following elements will be ignored:
+
 - Elements within a `<defs>` or `<clipPath>`
 - Elements with the `fill="none"` attribute
 - `<ellipse>` elements
@@ -77,11 +77,7 @@ A template should be a function that returns a string for the component source c
 
 ```js
 // default template
-module.exports = ({
-  name,
-  viewBox,
-  pathData
-}) => `import React from 'react'
+module.exports = ({ name, viewBox, pathData }) => `import React from 'react'
 
 const ${name}Icon = ({
   size,
