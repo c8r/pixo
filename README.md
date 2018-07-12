@@ -76,10 +76,10 @@ A template should be a function that returns a string for the component source c
 
 ```js
 // default template
-module.exports = ({ 
-  name, 
-  viewBox, 
-  pathData 
+module.exports = ({
+  name,
+  viewBox,
+  pathData
 }) => `import React from 'react'
 
 const ${name}Icon = ({
