@@ -196,6 +196,20 @@ test('warns when an unsupported element is used', t => {
   console.log.restore()
 })
 
+test('warns when an unsupported transform is used', t => {
+  sinon.spy(console, 'log')
+  pixo([
+    {
+      name: 'Unsupported',
+      content: `<svg viewBox='0 0 32 32'>
+        <path d="M 0 0 L 56 32" transform="matrix(1 2 3 4 5 6)" />
+      </svg>`
+    }
+  ])
+  t.is(console.log.calledOnce, true)
+  console.log.restore()
+})
+
 test('ignores elements in defs and clipPath elements', t => {
   const svg = pixo.parse({
     name: 'Defs',
