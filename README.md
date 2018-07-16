@@ -39,7 +39,7 @@ Each SVG icon **must** conform to the following:
 - Use a square `viewBox` attribute, preferably `0 0 24 24`
 - Only use a single color (e.g. black)
 - For best results, only use `<path>` elements
-- Do *not* use transforms
+- Initial (simple) support for the `translate` transformation is included. Others are not supported yet.
 
 Pixo includes experimental support for `<circle>`, `<polygon>`, and `<rect>` elements.
 

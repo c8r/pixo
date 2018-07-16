@@ -65,6 +65,19 @@ const rect = {
   </svg>`
 }
 
+const translatedRect = {
+  name: 'Rect',
+  content: `<svg viewBox='0 0 32 32'>
+    <rect
+      x='2'
+      y='9'
+      width='28'
+      height='14'
+      transform='translate(40 20)'
+    />
+  </svg>`
+}
+
 const svgs = [
   basic,
   multipath,
@@ -129,6 +142,11 @@ test('handles rect elements', t => {
   t.snapshot(components)
 })
 
+test('handles translations', t => {
+  const components = pixo([ translatedRect ])
+  t.snapshot(components)
+})
+
 test('polygonToPath converts polygon elements to path', t => {
   const path = pixo.polygonToPath({
     type: 'polygon',
@@ -171,6 +189,20 @@ test('warns when an unsupported element is used', t => {
       name: 'Unsupported',
       content: `<svg viewBox='0 0 32 32'>
         <ellipse cx='16' cy='16' rx='2' ry='4' />
+      </svg>`
+    }
+  ])
+  t.is(console.log.calledOnce, true)
+  console.log.restore()
+})
+
+test('warns when an unsupported transform is used', t => {
+  sinon.spy(console, 'log')
+  pixo([
+    {
+      name: 'Unsupported',
+      content: `<svg viewBox='0 0 32 32'>
+        <path d="M 0 0 L 56 32" transform="matrix(1 2 3 4 5 6)" />
       </svg>`
     }
   ])
