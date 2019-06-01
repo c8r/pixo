@@ -28,6 +28,8 @@ const cli = meow(`
 
     -c --icon-component   Include wrapper Icon.js component
 
+    -e --extension        Extension of outputted files
+
 `, {
   booleanDefault: undefined,
   flags: {
@@ -50,6 +52,10 @@ const cli = meow(`
     recursive: {
       type: 'boolean',
       alias: 'r'
+    },
+    extension: {
+      type: 'string',
+      alias: 'e'
     }
   }
 })
@@ -113,7 +119,7 @@ const convert = async (opts) => {
     fs.mkdirSync(opts.outDir)
   }
   components.forEach(({ name, content }) => {
-    const filename = path.join(opts.outDir, name + '.js')
+    const filename = path.join(opts.outDir, name + opts.extension || '.js')
     fs.writeFileSync(filename, content)
   })
 }
