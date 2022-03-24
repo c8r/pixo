@@ -135,6 +135,7 @@ Run `pixo --help` to see the list of options.
 -i --index            Include index.js barrel module
 -c --icon-component   Include wrapper Icon.js component
 -r --recursive        Recursively read all SVGs in subdirectories
+-f --fileType         Specify JavaScript/jsx or TypeScript/tsx by name or extension. Default JavaScript.
 ```
 
 **Example `package.json`**
