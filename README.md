@@ -126,6 +126,7 @@ Run `pixo --help` to see the list of options.
 - `index` (boolean) create an `index.js` barrel module
 - `iconComponent` (boolean) create an `Icon.js` wrapper component
 - `recursive` (boolean) recursively read all SVGs in subdirectories
+- `fileType`  (string) Specifies a file type to output all generated SVGs, defaulting to .js
 
 **CLI flags**
 
