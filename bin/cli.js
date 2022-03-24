@@ -109,7 +109,7 @@ const validateFileType = {
 	'.ts': '.ts',
 	'typescript': '.ts',
 
-	'tsx': 'tsx',
+	'tsx': '.tsx',
 	'.tsx': '.tsx'
 }
 
