@@ -31,6 +31,10 @@ const cli = meow(`
 `, {
   booleanDefault: undefined,
   flags: {
+	fileType: {
+	  type: 'string',
+	  alias: 'f'
+	},
     outDir: {
       type: 'string',
       alias: 'd'
@@ -93,6 +97,22 @@ const readFile = file => {
 
 const ignore = (file, stats) => !stats.isDirectory() && !/\.svg$/.test(file)
 
+const validateFileType = {
+	'.js': '.js',
+	'js': '.js',
+	'javascript': '.js',
+
+	'jsx': '.jsx',
+	'.jsx': '.jsx',
+
+	'ts': '.ts',
+	'.ts': '.ts',
+	'typescript': '.ts',
+
+	'tsx': 'tsx',
+	'.tsx': '.tsx'
+}
+
 const convert = async (opts) => {
   const readdir = opts.recursive
     ? async dirname => recursiveReaddir(dirname, [ ignore ])
@@ -113,7 +133,7 @@ const convert = async (opts) => {
     fs.mkdirSync(opts.outDir)
   }
   components.forEach(({ name, content }) => {
-    const filename = path.join(opts.outDir, name + '.js')
+    const filename = path.join(opts.outDir, name + (validateFileType[opts.fileType] || '.js'))
     fs.writeFileSync(filename, content)
   })
 }
