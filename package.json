@@ -30,7 +30,7 @@
     "update-notifier": "^2.5.0"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^5.1.0",
     "is-svg": "^3.0.0",
     "nyc": "^11.9.0",
     "sinon": "^5.1.1"
